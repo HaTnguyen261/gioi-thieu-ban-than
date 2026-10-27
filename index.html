@@ -1,72 +1,572 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Website giới thiệu bản thân của Thảo Nguyên">
-<title>Thảo Nguyên | Trang cá nhân</title>
-<style>
-:root{--bg:#fff;--surface:#f7f8fc;--text:#202124;--muted:#687080;--line:#e6e9ef;--accent:#3867e8;--soft:#edf2ff}
-body.dark{--bg:#111318;--surface:#1b1e26;--text:#f5f6fa;--muted:#b5bac5;--line:#303541;--accent:#9bb2ff;--soft:#242e48}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:.2s}
-a{color:inherit;text-decoration:none}.container{width:min(1050px,calc(100% - 36px));margin:auto}
-header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-weight:800;font-size:20px}.logo span,h1 span{color:var(--accent)}
-.links{display:flex;gap:22px;color:var(--muted)}.links a:hover{color:var(--accent)}
-button,.btn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:10px 14px;cursor:pointer;font:inherit}
-.hero{padding:85px 0}.hero-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:45px;align-items:center}
-.eyebrow{color:var(--accent);font-weight:bold;font-size:14px}
-h1{font-size:clamp(42px,7vw,76px);line-height:1.08;letter-spacing:-2px;margin:18px 0}
-p{color:var(--muted)}.intro{font-size:18px;max-width:600px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
-.profile,.about-box,.card,.goal-box,.contact{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:25px}
-.avatar{aspect-ratio:1;border-radius:17px;background:linear-gradient(135deg,#e7edff,#f5e8ff);display:grid;place-items:center;color:#3867e8;font-size:90px;font-weight:bold}
-body.dark .avatar{background:linear-gradient(135deg,#26385d,#3b2b4d);color:#dbe4ff}
-.profile h2{margin-bottom:0}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{background:var(--soft);color:var(--accent);border-radius:99px;padding:5px 10px;font-size:13px}
-section{padding:65px 0}.kicker{color:var(--accent);font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
-h2.title{font-size:clamp(30px,4vw,44px);line-height:1.2;letter-spacing:-1px;margin:8px 0 14px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--bg)}.icon{font-size:30px}.card h3{margin-bottom:5px}
-.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
-ul{padding-left:20px}li{margin:12px 0;color:var(--muted)}
-.contact{display:flex;justify-content:space-between;align-items:center;gap:20px}
-footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:14px}
-.reveal{animation:appear .7s ease both}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:700px){.hero{padding:55px 0}.hero-grid,.goal-grid{grid-template-columns:1fr}.profile{max-width:360px}.cards{grid-template-columns:1fr}.links{gap:10px;font-size:13px}.contact{align-items:flex-start;flex-direction:column}section{padding:48px 0}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website giới thiệu bản thân">
+  <title>Thảo Nguyên | Website cá nhân</title>
+
+  <style>
+    :root {
+      --bg: #f5f9ff;
+      --white: #ffffff;
+      --blue-light: #eaf2ff;
+      --blue: #1769e0;
+      --blue-dark: #0d4fb4;
+      --text: #142b4d;
+      --muted: #536b8c;
+      --line: #d5e3f7;
+      --shadow: 0 18px 50px rgba(23, 105, 224, .11);
+    }
+
+    body.dark {
+      --bg: #081426;
+      --white: #10213b;
+      --blue-light: #142c4d;
+      --blue: #79adff;
+      --blue-dark: #a7c8ff;
+      --text: #edf5ff;
+      --muted: #a8bfdc;
+      --line: #29466b;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .25);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-right { display: flex; gap: 8px; }
+
+    .icon-button {
+      min-width: 42px;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--blue-light);
+      color: var(--text);
+    }
+
+    .menu-button { display: none; }
+
+    .hero {
+      padding: 90px 0;
+      background: linear-gradient(125deg, var(--bg), var(--blue-light));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--white);
+      color: var(--blue-dark);
+      font-size: .85rem;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.08;
+      letter-spacing: -4px;
+      margin: 22px 0;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .hero-copy {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      font-weight: bold;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .profile-card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1 / .9;
+      border-radius: 20px;
+      background: linear-gradient(140deg, #cfe2ff, #eaf3ff, #b5d2ff);
+      color: #1554b7;
+      font-size: 6rem;
+      font-weight: 900;
+      letter-spacing: -8px;
+    }
+
+    .profile-card h2 { margin-bottom: 0; }
+    .profile-card p { margin-top: 3px; color: var(--muted); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: .8rem;
+      font-weight: bold;
+    }
+
+    section { padding: 75px 0; }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .kicker {
+      color: var(--blue);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin: 10px 0;
+    }
+
+    .section-heading p,
+    .muted { color: var(--muted); }
+
+    .about-panel {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(115deg, var(--white), var(--blue-light));
+      color: var(--muted);
+    }
+
+    .interest-section {
+      background: var(--blue-light);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 16px;
+      background: var(--blue-light);
+      font-size: 1.7rem;
+    }
+
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .goal-box {
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .goal-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .goal-list li {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .check {
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .contact-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 35px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: linear-gradient(120deg, var(--white), var(--blue-light));
+    }
+
+    .contact-panel p { color: var(--muted); }
+
+    footer {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+      background: var(--white);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer a { color: var(--blue); font-weight: bold; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity .6s, transform .6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 780px) {
+      .container { width: calc(100% - 30px); }
+      .menu-button { display: inline-block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 66px;
+        padding: 20px;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open { display: flex; }
+      .hero { padding: 60px 0; }
+      .hero-grid, .goal-grid { grid-template-columns: 1fr; gap: 30px; }
+      .profile-card { max-width: 380px; }
+      .cards { grid-template-columns: 1fr; }
+      section { padding: 55px 0; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+      h1 { letter-spacing: -2px; }
+    }
+  </style>
 </head>
+
 <body>
-<header><nav class="container">
-<a class="logo" href="#home">thảo nguyên<span>.</span></a>
-<div class="links"><a href="#about">Giới thiệu</a><a href="#interests">Sở thích</a><a href="#goals">Mục tiêu</a><a href="#contact">Liên hệ</a></div>
-<button id="theme" aria-label="Đổi giao diện">☾</button>
-</nav></header>
-<main>
-<section class="hero" id="home"><div class="container hero-grid">
-<div class="reveal"><div class="eyebrow">✦ XIN CHÀO, RẤT VUI ĐƯỢC GẶP BẠN</div>
-<h1>Mình là<br><span>Thảo Nguyên.</span></h1>
-<p class="intro">Một học sinh yêu thích công nghệ, luôn tò mò trước những điều mới mẻ và thích sáng tạo theo cách riêng của mình.</p>
-<div class="actions"><a class="btn primary" href="#about">Khám phá thêm ↘</a><a class="btn" href="#interests">Sở thích của mình</a></div></div>
-<aside class="profile reveal"><div class="avatar">TN</div><h2>Thảo Nguyên</h2><p>Học sinh · Người yêu sáng tạo</p><div class="tags"><span class="tag">Công nghệ</span><span class="tag">Âm nhạc</span><span class="tag">Thể thao</span></div></aside>
-</div></section>
-<section id="about"><div class="container reveal"><div class="kicker">VỀ MÌNH</div><h2 class="title">Mỗi ngày là một cơ hội để học hỏi.</h2><p>Mình tin rằng những điều nhỏ bé mình học hôm nay có thể tạo nên sự khác biệt trong tương lai.</p>
-<div class="about-box">Mình là Thảo Nguyên, một học sinh yêu thích công nghệ và sáng tạo. Mình thích tìm hiểu cách mọi thứ hoạt động, khám phá những ý tưởng mới và thử sức với các điều thú vị. Ngoài việc học, mình dành thời gian cho âm nhạc và thể thao để cân bằng cuộc sống. Trang web này là một góc nhỏ để mình giới thiệu bản thân và lưu lại hành trình phát triển của mình.</div></div></section>
-<section id="interests" style="background:var(--surface)"><div class="container"><div class="reveal"><div class="kicker">ĐIỀU MÌNH YÊU THÍCH</div><h2 class="title">Một chút về thế giới của mình.</h2><p>Ba điều giúp mình luôn có cảm hứng khám phá và phát triển mỗi ngày.</p></div>
-<div class="cards"><article class="card reveal"><div class="icon">💻</div><h3>Công nghệ</h3><p>Mình thích khám phá website, ứng dụng và những ý tưởng công nghệ giúp cuộc sống tiện lợi hơn.</p></article>
-<article class="card reveal"><div class="icon">🎧</div><h3>Âm nhạc</h3><p>Âm nhạc giúp mình thư giãn, tìm thấy cảm hứng và thêm năng lượng cho những ngày bận rộn.</p></article>
-<article class="card reveal"><div class="icon">🏀</div><h3>Thể thao</h3><p>Mình yêu thích vận động vì thể thao giúp rèn luyện tinh thần đồng đội, sự kiên trì và tính kỷ luật.</p></article></div></div></section>
-<section id="goals"><div class="container goal-grid"><div class="reveal"><div class="kicker">HƯỚNG TỚI TƯƠNG LAI</div><h2 class="title">Học hỏi hôm nay, trưởng thành ngày mai.</h2><p>Mình muốn không ngừng hoàn thiện bản thân, từng bước biến sự tò mò thành kiến thức và kỹ năng thực tế.</p></div>
-<div class="goal-box reveal"><ul><li>Trau dồi kiến thức và kỹ năng học tập mỗi ngày.</li><li>Tìm hiểu lập trình và tự tạo những sản phẩm nhỏ của riêng mình.</li><li>Giữ tinh thần sáng tạo, chủ động và sẵn sàng thử điều mới.</li><li>Cân bằng việc học, sở thích và thời gian cho bản thân.</li></ul></div></div></section>
-<section id="contact"><div class="container contact reveal"><div><div class="kicker">KẾT NỐI</div><h2 class="title">Cảm ơn bạn đã ghé thăm!</h2><p>Mình sẽ tiếp tục cập nhật trang web khi có thêm những điều mới muốn chia sẻ.</p></div><a class="btn primary" href="#home">Về đầu trang ↑</a></div></section>
-</main>
-<footer><div class="container">© <span id="year"></span> Thảo Nguyên. Được tạo bằng sự tò mò và sáng tạo.</div></footer>
-<script>
-document.getElementById('year').textContent=new Date().getFullYear();
-const theme=document.getElementById('theme');
-theme.addEventListener('click',()=>{document.body.classList.toggle('dark');theme.textContent=document.body.classList.contains('dark')?'☀':'☾';});
-</script>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">thảo nguyên<span>.</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">Giới thiệu</a>
+        <a href="#interests">Sở thích</a>
+        <a href="#goals">Mục tiêu</a>
+        <a href="#contact">Lời nhắn</a>
+      </nav>
+
+      <div class="nav-right">
+        <button class="icon-button" id="themeToggle" type="button" title="Đổi giao diện">☾</button>
+        <button class="icon-button menu-button" id="menuToggle" type="button" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">● Xin chào, rất vui được gặp bạn!</div>
+          <h1>Mình là<br><span>Thảo Nguyên.</span></h1>
+          <p class="hero-copy">
+            Một học sinh yêu thích công nghệ, luôn tò mò trước những điều mới mẻ
+            và thích sáng tạo theo cách riêng của mình.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#about">Khám phá về mình ↘</a>
+            <a class="btn" href="#interests">Sở thích của mình</a>
+          </div>
+        </div>
+
+        <aside class="profile-card reveal">
+          <div class="avatar">TN</div>
+          <h2>Thảo Nguyên</h2>
+          <p>Học sinh · Người yêu sáng tạo</p>
+          <div class="tags">
+            <span class="tag">Công nghệ</span>
+            <span class="tag">Âm nhạc</span>
+            <span class="tag">Thể thao</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="kicker">Về mình</div>
+          <h2 class="section-title">Mỗi ngày là một cơ hội để học hỏi.</h2>
+          <p>Mình tin rằng những điều nhỏ bé học được hôm nay có thể tạo nên sự khác biệt trong tương lai.</p>
+        </div>
+        <div class="about-panel reveal">
+          Mình là Thảo Nguyên, một học sinh yêu thích công nghệ và sáng tạo.
+          Mình thích tìm hiểu cách mọi thứ hoạt động, khám phá những ý tưởng mới
+          và thử sức với các điều thú vị. Ngoài việc học, mình dành thời gian cho
+          âm nhạc và thể thao để cân bằng cuộc sống.
+        </div>
+      </div>
+    </section>
+
+    <section class="interest-section" id="interests">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="kicker">Điều mình yêu thích</div>
+          <h2 class="section-title">Một chút về thế giới của mình.</h2>
+          <p>Ba điều giúp mình có thêm cảm hứng khám phá và phát triển mỗi ngày.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">💻</div>
+            <h3>Công nghệ</h3>
+            <p>Mình thích khám phá website, ứng dụng và những ý tưởng công nghệ hữu ích.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🎧</div>
+            <h3>Âm nhạc</h3>
+            <p>Âm nhạc giúp mình thư giãn, tìm cảm hứng và có thêm năng lượng mỗi ngày.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🏀</div>
+            <h3>Thể thao</h3>
+            <p>Thể thao giúp mình rèn luyện tinh thần đồng đội, sự kiên trì và kỷ luật.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals">
+      <div class="container goal-grid">
+        <div class="section-heading reveal">
+          <div class="kicker">Hướng tới tương lai</div>
+          <h2 class="section-title">Học hỏi hôm nay, trưởng thành ngày mai.</h2>
+          <p>Mình muốn không ngừng hoàn thiện bản thân và biến sự tò mò thành kiến thức thực tế.</p>
+        </div>
+
+        <div class="goal-box reveal">
+          <ul class="goal-list">
+            <li><span class="check">✓</span><span>Trau dồi kiến thức và kỹ năng học tập mỗi ngày.</span></li>
+            <li><span class="check">✓</span><span>Tìm hiểu lập trình và tự tạo những sản phẩm nhỏ.</span></li>
+            <li><span class="check">✓</span><span>Giữ tinh thần sáng tạo và sẵn sàng thử điều mới.</span></li>
+            <li><span class="check">✓</span><span>Cân bằng việc học, sở thích và thời gian cho bản thân.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <div class="kicker">Lời nhắn</div>
+            <h2 class="section-title">Cảm ơn bạn đã ghé thăm!</h2>
+            <p>Mình sẽ tiếp tục cập nhật trang web khi có thêm những điều mới muốn chia sẻ.</p>
+          </div>
+          <a class="btn btn-primary" href="#home">Về đầu trang ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Thảo Nguyên · Được tạo bằng sự tò mò và sáng tạo.</span>
+      <a href="#home">Trở về đầu trang ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark");
+      themeToggle.textContent = isDark ? "☀" : "☾";
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    const items = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach(item => observer.observe(item));
+    } else {
+      items.forEach(item => item.classList.add("visible"));
+    }
+  </script>
 </body>
 </html>
